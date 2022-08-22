@@ -1,0 +1,28 @@
+debug: false
+
+logging:
+  level:
+    com.example.extendablechattingbe: debug
+    org.springframework.web.servlet: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+spring:
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/chatdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate.ddl-auto: create
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      hibernate.default_batch_fetch_size: 100
+
