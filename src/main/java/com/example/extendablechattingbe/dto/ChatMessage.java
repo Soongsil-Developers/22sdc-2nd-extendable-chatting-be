@@ -13,7 +13,7 @@ public class ChatMessage {
     private String content;
     private MessageType type;
 
-    enum  MessageType {
+    enum MessageType {
         CHAT, LEAVE, JOIN,
     }
 }
