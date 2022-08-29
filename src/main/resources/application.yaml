@@ -6,13 +6,6 @@ logging:
     org.springframework.web.servlet: debug
 
 spring:
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
-      path: /h2
-
   datasource:
     url: jdbc:h2:tcp://localhost/~/chatdb;MODE=MYSQL
     username: sa
