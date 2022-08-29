@@ -4,7 +4,6 @@ logging:
   level:
     com.example.extendablechattingbe: debug
     org.springframework.web.servlet: debug
-    org.hibernate.type.descriptor.sql.BasicBinder: trace
 
 spring:
   h2:
@@ -12,12 +11,14 @@ spring:
       enabled: true
       settings:
         web-allow-others: true
-      path: /h2-console
+      path: /h2
+
   datasource:
     url: jdbc:h2:tcp://localhost/~/chatdb;MODE=MYSQL
     username: sa
     password:
     driver-class-name: org.h2.Driver
+
   jpa:
     hibernate.ddl-auto: create
     open-in-view: false
@@ -28,3 +29,6 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
 
+jwt:
+  secret-key: extendable-chatting-be-v1-2022-08-29.secret_key
+  token-expired-time-ms: 864000000
