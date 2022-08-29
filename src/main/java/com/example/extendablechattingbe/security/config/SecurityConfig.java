@@ -27,6 +27,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf().disable()
+                .headers().frameOptions().disable()
+                .and()
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()  // StaticResourceLocation {css, js}
                         .antMatchers("/api/users/**").permitAll()
