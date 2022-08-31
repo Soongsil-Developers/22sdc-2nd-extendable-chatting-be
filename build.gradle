@@ -30,7 +30,7 @@ dependencies {
 
 
     // database
-    runtimeOnly 'com.h2database:h2:1.4.200' // 개발용
+    runtimeOnly 'com.h2database:h2' // 개발용
     runtimeOnly 'mysql:mysql-connector-java' // 배포용
 
     // jwt
