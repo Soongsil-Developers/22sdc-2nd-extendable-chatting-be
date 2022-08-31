@@ -10,7 +10,7 @@ ex)feature/#11-websocketHandler
 
 ### commit 생성 양식
 ex) [Feat] 새로운 기능 추가
-ex) [Docs] 문서 수정
+ex) [Fix] 버그 수정
 ``` text
 [Feat] 새로운 기능 추가
 [Fix] 버그 수정
