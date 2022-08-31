@@ -1,5 +1,6 @@
 package com.example.extendablechattingbe.user.entity;
 
+import com.example.extendablechattingbe.common.entity.BaseTimeEntity;
 import com.example.extendablechattingbe.participant.entity.Participant;
 import com.example.extendablechattingbe.security.UserRole;
 import lombok.*;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.ALL;
@@ -21,7 +23,7 @@ import static javax.persistence.CascadeType.ALL;
         @Index(columnList = "user_name", unique = true),
 })
 @Entity
-public class User {
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,27 +50,8 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = ALL)
     private Set<Participant> participants = new LinkedHashSet<>();
 
-    @Column(name = "created_at", insertable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    @Column(name = "modified_at")
-    private LocalDateTime modifiedAt;
-
     @Column(name = "deleted_at")
-    private LocalDateTime deletedAt;
-
-    @PrePersist
-    void createdAt() {
-        createdAt = LocalDateTime.now();
-    }
-
-    /**
-     * PreUpdate: saveAndFlush()
-     */
-    @PreUpdate
-    void modifiedAt() {
-        modifiedAt = LocalDateTime.now();
-    }
+    private LocalDateTime deletedTime;
 
     @Builder(access = AccessLevel.PRIVATE)
     private User(String userName, String password, String nickname) {
@@ -84,6 +67,19 @@ public class User {
                 .password(password)
                 .nickname(nickname)
                 .build();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
 }
