@@ -9,7 +9,7 @@ ex)feature/#11-websocketHandler
 ```
 
 ### commit 생성 양식
-ex) Feat: 무엇 무엇을 했었는지
+ex) [Feat] 새로운 기능 추가
 ``` text
 [Feat] 새로운 기능 추가
 [Fix] 버그 수정
