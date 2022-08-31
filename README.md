@@ -11,13 +11,12 @@ ex)feature/#11-websocketHandler
 ### commit 생성 양식
 ex) Feat: 무엇 무엇을 했었는지
 ``` text
-[Feature]     : 새로운 기능 추가
-Fix      : 버그 수정
-Docs     : 문서 수정
-[Test]     : 테스트 코드 추가
-[Refactor] : 코드 리팩토링, 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우, 파일을 삭제하는 작업만 수행한 경우
-[Design]   : CSS 및 레이아웃 작업
-[Chore]    : 코드 외 빌드 부분 혹은 패키지 매니저 수정사항
+[Feat] 새로운 기능 추가
+[Fix] 버그 수정
+[Docs] 문서 수정
+[Test] 테스트 코드 추가
+[Refactor] 코드 리팩토링, 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우, 파일을 삭제하는 작업만 수행한 경우
+[Chore] 코드 외 빌드 부분 혹은 패키지 매니저 수정사항
 ```
 
 ### Pull Request 
