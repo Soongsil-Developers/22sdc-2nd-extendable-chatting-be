@@ -30,9 +30,9 @@ public class UserDto {
                 .password(user.getPassword())
                 .nickname(user.getNickname())
                 .role(user.getRole())
-                .createdAt(user.getCreatedAt())
-                .modifiedAt(user.getModifiedAt())
-                .deletedAt(user.getDeletedAt())
+                .createdAt(user.getCreatedTime())
+                .modifiedAt(user.getLastModifiedTime())
+                .deletedAt(user.getDeletedTime())
                 .build();
     }
 
