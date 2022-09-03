@@ -1,17 +1,31 @@
 package com.example.extendablechattingbe.common.response;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
+
 public class SocketResponse<T> {
 
-    private ResponseCode responseCode;
-    private T result;
+    private final Status status;
+    private final T content;
 
-    public static <T> SocketResponse<T> of(ResponseCode responseCode, T result) {
-        return new SocketResponse<>(responseCode, result);
+    @Getter
+    @Builder
+    private static class Status {
+        private int code;
+        private String message;
+    }
+
+    public static <T> SocketResponse<T> of(ResponseCode responseCode, T content) {
+        Status status = Status.builder()
+                .code(responseCode.getCode())
+                .message(responseCode.getMessage())
+                .build();
+
+        return new SocketResponse<>(status, content);
     }
 
 }
