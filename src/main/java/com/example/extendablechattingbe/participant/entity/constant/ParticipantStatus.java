@@ -1,5 +1,5 @@
 package com.example.extendablechattingbe.participant.entity.constant;
 
-public enum Status {
+public enum ParticipantStatus {
     ONLINE, OFFLINE
 }

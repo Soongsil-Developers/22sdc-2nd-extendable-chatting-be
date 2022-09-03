@@ -1,11 +1,14 @@
 package com.example.extendablechattingbe.participant.entity;
 
 import com.example.extendablechattingbe.common.entity.BaseTimeEntity;
-import com.example.extendablechattingbe.participant.entity.constant.Status;
+import com.example.extendablechattingbe.participant.entity.constant.ParticipantStatus;
 import com.example.extendablechattingbe.room.entity.Room;
 import com.example.extendablechattingbe.session.SocketSession;
 import com.example.extendablechattingbe.user.entity.User;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -31,32 +34,32 @@ public class Participant extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private Status status;
+    private ParticipantStatus status;
 
     @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<SocketSession> socketSessions = new LinkedHashSet<>();
 
     @Builder(access = AccessLevel.PRIVATE)
-    private Participant(Room room, User user, Status status) {
+    private Participant(Room room, User user, ParticipantStatus status) {
         this.room = room;
         this.user = user;
         this.status = status;
     }
 
     public static Participant of(Room room, User user) {
-        return new Participant(room, user, Status.ONLINE);
+        return new Participant(room, user, ParticipantStatus.ONLINE);
     }
 
     public void online() {
-        this.status = Status.ONLINE;
+        this.status = ParticipantStatus.ONLINE;
     }
 
     public void offline() {
-        this.status = Status.OFFLINE;
+        this.status = ParticipantStatus.OFFLINE;
     }
 
     public void checkOnOffline() {
-        if (this.socketSessions.size() <= 0) {
+        if (this.socketSessions.size() == 0) {
             offline();
             return;
         }
