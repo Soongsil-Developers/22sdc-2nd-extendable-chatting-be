@@ -1,8 +1,9 @@
 package com.example.extendablechattingbe.common.exception;
 
+import com.example.extendablechattingbe.common.code.CommonCode;
 import com.example.extendablechattingbe.common.response.Response;
-//import com.example.extendablechattingbe.room.code.RoomCode;
-//import com.example.extendablechattingbe.room.exception.RoomNotFoundException;
+import com.example.extendablechattingbe.room.code.RoomCode;
+import com.example.extendablechattingbe.room.exception.RoomNotFoundException;
 import com.example.extendablechattingbe.user.code.UserCode;
 import com.example.extendablechattingbe.user.exception.NicknameDuplicatedException;
 import com.example.extendablechattingbe.user.exception.NotEnoughInformationException;
@@ -37,9 +38,15 @@ public class GlobalControllerAdvice {
         return ResponseEntity.ok().body(Response.of(UserCode.NOT_ENOUGH_INFORMATION, null));
     }
 
-//    @ExceptionHandler(RoomNotFoundException.class)
-//    public ResponseEntity<Response> handleNotFoundRoomException(){
-//        return ResponseEntity.ok().body(Response.of(RoomCode.ROOM_NOT_FOUND, null));
-//    }
+    @ExceptionHandler(RoomNotFoundException.class)
+    public ResponseEntity<Response> handleNotFoundRoomException() {
+        return ResponseEntity.ok().body(Response.of(RoomCode.ROOM_NOT_FOUND, null));
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Response> handlerRuntimeException(RuntimeException e) {
+        log.error(e.getMessage());
+        return ResponseEntity.ok(Response.of(CommonCode.INTERNAL_SERVER_ERROR, null));
+    }
 
 }
