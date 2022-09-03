@@ -42,6 +42,7 @@ public class UserDto {
 
     public UserPrincipal toPrincipal() {
         return UserPrincipal.builder()
+                .id(id)
                 .userName(userName)
                 .password(password)
                 .nickname(nickname)

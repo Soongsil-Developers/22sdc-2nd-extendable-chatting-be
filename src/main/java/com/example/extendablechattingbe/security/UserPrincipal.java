@@ -16,6 +16,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 public class UserPrincipal implements UserDetails {
+    private Long id;
     private String userName;
     private String password;
     private String nickname;
@@ -24,6 +25,7 @@ public class UserPrincipal implements UserDetails {
 
     public static UserPrincipal fromDto(UserDto dto) {
         return UserPrincipal.builder()
+                .id(dto.getId())
                 .userName(dto.getUserName())
                 .password(dto.getPassword())
                 .nickname(dto.getNickname())
@@ -34,6 +36,7 @@ public class UserPrincipal implements UserDetails {
 
     public UserDto toDto() {
         return UserDto.builder()
+                .id(id)
                 .userName(userName)
                 .password(password)
                 .nickname(nickname)

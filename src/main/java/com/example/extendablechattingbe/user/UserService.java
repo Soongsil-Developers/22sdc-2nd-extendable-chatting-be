@@ -2,6 +2,7 @@ package com.example.extendablechattingbe.user;
 
 import com.example.extendablechattingbe.security.util.JwtTokenUtils;
 import com.example.extendablechattingbe.user.dto.UserDto;
+import com.example.extendablechattingbe.user.dto.response.UserMyInfoResponse;
 import com.example.extendablechattingbe.user.entity.User;
 import com.example.extendablechattingbe.user.exception.InvalidPasswordException;
 import com.example.extendablechattingbe.user.exception.UserNameDuplicatedException;
@@ -53,6 +54,17 @@ public class UserService {
         }
 
         return JwtTokenUtils.generateToken(dto.getUserName(), secretKey, expiredTimeMs);
+    }
+
+    public UserMyInfoResponse getMyInfo(Long userId) {
+        User user = findUserEntityById(userId);
+        return UserMyInfoResponse.fromEntity(user);
+    }
+
+    // 유저 찾기
+    private User findUserEntityById(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
     }
 
 }
