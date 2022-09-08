@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-
 public class SocketResponse<T> {
 
     private final Status status;

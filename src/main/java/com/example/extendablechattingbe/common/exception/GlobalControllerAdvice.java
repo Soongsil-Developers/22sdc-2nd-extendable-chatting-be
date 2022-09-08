@@ -23,6 +23,7 @@ public class GlobalControllerAdvice {
         return ResponseEntity.badRequest().body(Response.of(UserCode.USER_NOT_FOUND, null));
     }
 
+    // userName
     @ExceptionHandler(UserNameDuplicatedException.class)
     public ResponseEntity<Response> handleUsernameDuplicationException() {
         return ResponseEntity.ok().body(Response.of(UserCode.DUPLICATED_USERNAME, null));
