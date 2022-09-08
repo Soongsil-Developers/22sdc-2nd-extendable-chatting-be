@@ -16,14 +16,14 @@ public class ChatHistoryResponse {
     private String message;
     private LocalDateTime sendAt;
 
-    public static ChatHistoryResponse fromEntity(Chat chat) {
-        return ChatHistoryResponse.builder()
-                .userId(chat.getUser().getId())
-                .nickname(chat.getUser().getNickname())
-                .userProfileImagePath(chat.getUser().getUserProfileImagePath())
-                .message(chat.getMessage())
-                .sendAt(chat.getSendAt())
-                .build();
-    }
+//    public static ChatHistoryResponse fromEntity(Chat chat) {
+//        return ChatHistoryResponse.builder()
+//                .userId(chat.getUser().getId())
+//                .nickname(chat.getUser().getNickname())
+//                .userProfileImagePath(chat.getUser().getUserProfileImagePath())
+//                .message(chat.getMessage())
+//                .sendAt(chat.getSendAt())
+//                .build();
+//    }
 
 }

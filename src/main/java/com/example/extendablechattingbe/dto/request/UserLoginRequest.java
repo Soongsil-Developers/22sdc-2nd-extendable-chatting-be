@@ -1,7 +1,6 @@
-package com.example.extendablechattingbe.user.dto.request;
+package com.example.extendablechattingbe.dto.request;
 
 
-import com.example.extendablechattingbe.user.dto.UserDto;
 import lombok.*;
 
 
@@ -12,12 +11,5 @@ import lombok.*;
 public class UserLoginRequest {
     private String name;
     private String password;
-
-    public UserDto toDto() {
-        return UserDto.builder()
-                .userName(name)
-                .password(password)
-                .build();
-    }
 
 }

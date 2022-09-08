@@ -1,4 +1,4 @@
-package com.example.extendablechattingbe.room.exception;
+package com.example.extendablechattingbe.common.exception;
 
 public class RoomNotFoundException extends RuntimeException {
     public RoomNotFoundException(String message) {

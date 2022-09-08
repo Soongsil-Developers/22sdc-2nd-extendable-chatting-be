@@ -1,6 +1,7 @@
-package com.example.extendablechattingbe.room.dto.response;
+package com.example.extendablechattingbe.dto.response;
 
-import com.example.extendablechattingbe.room.entity.Room;
+
+import com.example.extendablechattingbe.model.Room;
 import lombok.Builder;
 import lombok.Getter;
 

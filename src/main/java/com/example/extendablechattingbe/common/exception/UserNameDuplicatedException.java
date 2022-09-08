@@ -1,4 +1,5 @@
-package com.example.extendablechattingbe.user.exception;
+package com.example.extendablechattingbe.common.exception;
+
 
 public class UserNameDuplicatedException extends RuntimeException {
 

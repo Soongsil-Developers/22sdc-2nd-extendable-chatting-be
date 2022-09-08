@@ -1,4 +1,4 @@
-package com.example.extendablechattingbe.common.entity;
+package com.example.extendablechattingbe.model;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

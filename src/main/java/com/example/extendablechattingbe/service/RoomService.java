@@ -1,2 +1,8 @@
-package com.example.extendablechattingbe.service;public class RoomService {
+package com.example.extendablechattingbe.service;
+
+import org.springframework.stereotype.Service;
+
+
+@Service
+public class RoomService {
 }

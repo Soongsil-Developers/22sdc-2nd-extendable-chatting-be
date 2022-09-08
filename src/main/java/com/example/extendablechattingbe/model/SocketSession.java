@@ -1,7 +1,5 @@
-package com.example.extendablechattingbe.session;
+package com.example.extendablechattingbe.model;
 
-import com.example.extendablechattingbe.common.entity.BaseTimeEntity;
-import com.example.extendablechattingbe.participant.entity.Participant;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,20 +19,20 @@ public class SocketSession extends BaseTimeEntity {
     @Column(name = "socket_session_id")
     private String socketSessionId;
 
-    @ManyToOne
-    private Participant participant;
-
-    @Builder(access = AccessLevel.PRIVATE)
-    private SocketSession(String socketSessionId, Participant participant) {
-        this.socketSessionId = socketSessionId;
-        this.participant = participant;
-    }
-
-    public static SocketSession of(String socketSessionId, Participant participant) {
-        return SocketSession.builder()
-                .socketSessionId(socketSessionId)
-                .participant(participant)
-                .build();
-    }
+//    @ManyToOne
+//    private Participant participant;
+//
+//    @Builder(access = AccessLevel.PRIVATE)
+//    private SocketSession(String socketSessionId, Participant participant) {
+//        this.socketSessionId = socketSessionId;
+//        this.participant = participant;
+//    }
+//
+//    public static SocketSession of(String socketSessionId, Participant participant) {
+//        return SocketSession.builder()
+//                .socketSessionId(socketSessionId)
+//                .participant(participant)
+//                .build();
+//    }
 
 }

@@ -1,10 +1,5 @@
-package com.example.extendablechattingbe.room.entity;
+package com.example.extendablechattingbe.model;
 
-import com.example.extendablechattingbe.model.Chat;
-import com.example.extendablechattingbe.common.entity.BaseTimeEntity;
-import com.example.extendablechattingbe.participant.entity.Participant;
-import com.example.extendablechattingbe.user.entity.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,13 +37,7 @@ public class Room extends BaseTimeEntity {
     @Column(name = "limit_user_count")
     private int limitUserCount;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "create_user_id")
-    private User roomCreator;
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Participant> participants = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("id desc")
@@ -58,36 +47,12 @@ public class Room extends BaseTimeEntity {
     private LocalDateTime deletedTime;
 
     @Builder(access = AccessLevel.PRIVATE)
-    private Room(String roomName, String roomContent, int limitUserCount, User user) {
-        this.roomName = roomName;
-        this.roomContent = roomContent;
-        this.limitUserCount = limitUserCount;
-        this.roomCreator = user;
-    }
-
-    public static Room of(String roomName, String roomContent, int limitUserCount, User user) {
-        return Room.builder()
-                .roomName(roomName)
-                .roomContent(roomContent)
-                .limitUserCount(limitUserCount)
-                .user(user)
-                .build();
-    }
-
-    public void updateRoom(String roomName, String roomContent, int limitUserCount){
+    private Room(String roomName, String roomContent, int limitUserCount) {
         this.roomName = roomName;
         this.roomContent = roomContent;
         this.limitUserCount = limitUserCount;
     }
 
-    public void exitRoom(Participant participantEntity){
-        for(Participant participant : getParticipants()){
-            if(Objects.equals(participant.getId(), participantEntity.getId())){
-                getParticipants().remove(participant);
-                break;
-            }
-        }
-    }
 
     @Override
     public boolean equals(Object o) {

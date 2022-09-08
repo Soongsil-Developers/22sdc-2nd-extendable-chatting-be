@@ -1,6 +1,5 @@
-package com.example.extendablechattingbe.room.dto.request;
+package com.example.extendablechattingbe.dto.request;
 
-import com.example.extendablechattingbe.room.dto.RoomDto;
 import lombok.*;
 
 @Getter
@@ -11,13 +10,5 @@ public class RoomCreateRequest {
     private String name;
     private String content;
     private int limitUserCount;
-
-    public RoomDto toDto() {
-        return RoomDto.builder()
-                .roomName(name)
-                .roomContent(content)
-                .limitUserCount(limitUserCount)
-                .build();
-    }
 
 }

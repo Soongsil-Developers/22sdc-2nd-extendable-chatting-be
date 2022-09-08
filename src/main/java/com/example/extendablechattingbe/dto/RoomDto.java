@@ -1,6 +1,6 @@
-package com.example.extendablechattingbe.room.dto;
+package com.example.extendablechattingbe.dto;
 
-import com.example.extendablechattingbe.room.entity.Room;
+import com.example.extendablechattingbe.model.Room;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -24,8 +24,6 @@ public class RoomDto {
                 .roomName(room.getRoomName())
                 .roomContent(room.getRoomContent())
                 .limitUserCount(room.getLimitUserCount())
-                .participantCount(room.getParticipants().size())
-                .creator(room.getRoomCreator().getNickname())
                 .createdTime(room.getCreatedTime())
                 .build();
     }
