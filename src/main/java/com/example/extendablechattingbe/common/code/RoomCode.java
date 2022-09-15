@@ -1,10 +1,12 @@
-package com.example.extendablechattingbe.room.code;
+package com.example.extendablechattingbe.common.code;
 
 import com.example.extendablechattingbe.common.response.ResponseCode;
 
 public enum RoomCode implements ResponseCode {
 
-    ROOM_NOT_FOUND(1200, "해당하는 방이 존재하지 않습니다."),
+    ROOM_CREATED(1200, "채팅방이 생성되었습니다."),
+    ROOM_NOT_FOUND(1201, "해당하는 방이 존재하지 않습니다."),
+    ROOM_DELETED(1202, "채팅방이 삭제되었습니다."),
     ROOM_IS_FULL(1201, "인원이 가득 찼습니다."),
     ROOM_INFO_CHANGED(1202, "방 정보가 업데이트 되었습니다."),
     USER_EXIT(1203, "방에서 성공적으로 나갔습니다."),
