@@ -8,13 +8,13 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/chatdb;MODE=MYSQL
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: ${LOCAL_DATASOURCE_URL}
+    username: ${LOCAL_DATASOURCE_USERNAME}
+    password: ${LOCAL_DATASOURCE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
-    hibernate.ddl-auto: create
+    hibernate.ddl-auto: validate
     open-in-view: false
     show-sql: true
     properties:
@@ -23,6 +23,3 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
 
-jwt:
-  secret-key: extendable-chatting-be-v1-2022-08-29.secret_key
-  token-expired-time-ms: 864000000
