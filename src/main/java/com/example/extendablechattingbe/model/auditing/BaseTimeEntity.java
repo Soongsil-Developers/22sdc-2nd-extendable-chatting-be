@@ -1,7 +1,8 @@
-package com.example.extendablechattingbe.model;
+package com.example.extendablechattingbe.model.auditing;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
@@ -12,10 +13,14 @@ import java.time.LocalDateTime;
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
-public abstract class ChatBaseEntity {
+public abstract class BaseTimeEntity {
 
     @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime sendAt;
+    @Column(updatable = false, name = "created_at")
+    private LocalDateTime createdTime;
+
+    @LastModifiedDate
+    @Column(name = "modified_at")
+    private LocalDateTime lastModifiedTime;
 
 }

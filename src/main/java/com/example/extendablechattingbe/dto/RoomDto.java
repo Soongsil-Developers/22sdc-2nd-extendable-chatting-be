@@ -12,20 +12,14 @@ public class RoomDto {
     private Long id;
     private String roomName;
     private String roomContent;
-    private int limitUserCount;
-    private int participantCount;
-    private String host;
-    private String creator;
     private LocalDateTime createdTime;
 
-    public static RoomDto fromEntity(Room room) {
+    public static RoomDto from(Room room) {
         return RoomDto.builder()
                 .id(room.getId())
                 .roomName(room.getRoomName())
                 .roomContent(room.getRoomContent())
-                .limitUserCount(room.getLimitUserCount())
                 .createdTime(room.getCreatedTime())
                 .build();
     }
-
 }
