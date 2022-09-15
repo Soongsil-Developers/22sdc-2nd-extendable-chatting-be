@@ -1,49 +1,68 @@
 package com.example.extendablechattingbe.service;
 
-import com.example.extendablechattingbe.chat.dto.ChatRoom;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.extendablechattingbe.common.exception.ChatNotFoundException;
+import com.example.extendablechattingbe.common.exception.RoomNotFoundException;
+import com.example.extendablechattingbe.common.exception.UserNotFoundException;
+import com.example.extendablechattingbe.dto.request.ChatRequest;
+import com.example.extendablechattingbe.model.Chat;
+import com.example.extendablechattingbe.model.Room;
+import com.example.extendablechattingbe.model.User;
+import com.example.extendablechattingbe.repository.ChatRepository;
+import com.example.extendablechattingbe.repository.RoomRepository;
+import com.example.extendablechattingbe.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketSession;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
-import java.io.IOException;
-import java.util.*;
-
-@Slf4j
 @RequiredArgsConstructor
+@Transactional
 @Service
 public class ChatService {
-    private final ObjectMapper objectMapper;
-    private Map<String, ChatRoom> chatRooms = new LinkedHashMap<>();
+
+    private final ChatRepository chatRepository;
+    private final RoomRepository roomRepository;
+    private final UserRepository userRepository;
 
 
-    public List<ChatRoom> findAllRoom() {
-        return new ArrayList<>(chatRooms.values());
+    public void save(ChatRequest request) {
+        User user = getUserOrException(request.getUsername());
+
+        Room room = getRoomOrException(request.getRoomId());
+
+        Chat chat = Chat.of(request.getMessage(), request.getType(), user, room);
+        chatRepository.save(chat);
     }
 
-    public ChatRoom findRoomById(String roomId) {
-        return chatRooms.get(roomId);
+    @Transactional(readOnly = true)
+    public ChatRequest getChat(Long chatId) {
+        Chat chat = getChatOrException(chatId);
+        return ChatRequest.from(chat);
     }
 
-    public ChatRoom createRoom(String name) {
-        String randomId = UUID.randomUUID().toString();
-        ChatRoom chatRoom = ChatRoom.builder()
-                .roomId(randomId)
-                .name(name)
-                .build();
-        chatRooms.put(randomId, chatRoom);
-        return chatRoom;
+    @Transactional(readOnly = true)
+    public Page<ChatRequest> getChats(Long roomId, Pageable pageable) {
+        Room room = getRoomOrException(roomId);
+        return chatRepository.findByRoom(room, pageable).map(ChatRequest::from);
     }
 
-    public <T> void sendMessage(WebSocketSession session, T message) {
-        try {
-            session.sendMessage(new TextMessage(objectMapper.writeValueAsString(message)));
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
+    public ChatRequest deleteChat(Long chatId) {
+        Chat chat = getChatOrException(chatId);
+        chatRepository.delete(chat);
+        return ChatRequest.from(chat);
     }
 
+
+    private User getUserOrException(String username) {
+        return userRepository.findByUserName(username).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
+    }
+
+    private Room getRoomOrException(Long roomId) {
+        return roomRepository.findById(roomId).orElseThrow(() -> new RoomNotFoundException("해당 채팅방을 찾을 수 없습니다."));
+    }
+
+    private Chat getChatOrException(Long chatId) {
+        return chatRepository.findById(chatId).orElseThrow(() -> new ChatNotFoundException("해당 채팅을 찾을 수 없습니다."));
+    }
 }
