@@ -1,3 +1,6 @@
+server:
+  port: 0
+
 debug: false
 
 logging:
@@ -14,7 +17,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
-    hibernate.ddl-auto: validate
+    hibernate.ddl-auto: update
     open-in-view: false
     show-sql: true
     properties:
@@ -23,3 +26,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
 
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVER_IP}
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP_ID}
