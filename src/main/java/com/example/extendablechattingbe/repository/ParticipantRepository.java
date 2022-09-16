@@ -17,6 +17,7 @@ public interface ParticipantRepository extends JpaRepository<Participant, Long> 
     @Query("select p from Participant p join fetch p.room where p.user = :user")
     List<Participant> findByUser(@Param("user") User user);
 
-    @Query("select count(p) from Participant p where p.room = :roomId")
+    @Query("select count(p) from Participant p where p.room.id = :roomId")
     int countByRoom(@Param("roomId") Long roomId);
+
 }

@@ -1,8 +1,11 @@
-package com.example.extendablechattingbe.common.exception;
+package com.example.extendablechattingbe.common.controller;
 
 import com.example.extendablechattingbe.common.code.CommonCode;
 import com.example.extendablechattingbe.common.code.RoomCode;
 import com.example.extendablechattingbe.common.code.UserCode;
+import com.example.extendablechattingbe.common.exception.RoomNotFoundException;
+import com.example.extendablechattingbe.common.exception.UserNameDuplicatedException;
+import com.example.extendablechattingbe.common.exception.UserNotFoundException;
 import com.example.extendablechattingbe.common.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -35,4 +38,5 @@ public class GlobalControllerAdvice {
         log.error(e.getMessage());
         return ResponseEntity.ok(Response.of(CommonCode.INTERNAL_SERVER_ERROR, null));
     }
+
 }

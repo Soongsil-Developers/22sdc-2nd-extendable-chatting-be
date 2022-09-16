@@ -8,6 +8,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class ParticipantDto {
+
     private Long id;
     private String username;
     private Long roomId;
@@ -19,4 +20,5 @@ public class ParticipantDto {
                 .roomId(participant.getRoom().getId())
                 .build();
     }
+
 }

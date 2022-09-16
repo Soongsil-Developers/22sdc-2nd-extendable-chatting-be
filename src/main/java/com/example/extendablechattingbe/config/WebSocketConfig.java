@@ -1,6 +1,6 @@
 package com.example.extendablechattingbe.config;
 
-import com.example.extendablechattingbe.config.handler.WebSocketHandler;
+import com.example.extendablechattingbe.common.handler.WebSocketHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -18,4 +18,5 @@ public class WebSocketConfig implements WebSocketConfigurer {
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(webSocketHandler, "/chat").setAllowedOrigins("*");
     }
+
 }

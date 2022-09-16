@@ -59,4 +59,5 @@ public class UserController {
         ParticipantDto participantDto = userService.leaveRoom(username, roomId);
         return ResponseEntity.ok().body(Response.of(ParticipantCode.PARTICIPANT_DELETED, participantDto));
     }
+
 }

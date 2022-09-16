@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum CommonCode implements ResponseCode {
+
     GOOD_REQUEST(1000, "올바른 요청입니다."),
     BAD_REQUEST(1001, "잘못된 요청입니다."),
     ILLEGAL_REQUEST(1002, "잘못된 데이터가 포함된 요청입니다."),

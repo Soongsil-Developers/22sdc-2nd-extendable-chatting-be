@@ -16,6 +16,7 @@ import java.util.Set;
 })
 @Entity
 public class Room extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "room_id")
@@ -37,4 +38,5 @@ public class Room extends BaseTimeEntity {
         room.roomContent = roomContent;
         return room;
     }
+
 }

@@ -3,7 +3,7 @@ package com.example.extendablechattingbe.service;
 import com.example.extendablechattingbe.common.exception.ChatNotFoundException;
 import com.example.extendablechattingbe.common.exception.RoomNotFoundException;
 import com.example.extendablechattingbe.common.exception.UserNotFoundException;
-import com.example.extendablechattingbe.dto.request.ChatRequest;
+import com.example.extendablechattingbe.dto.request.ChatMessage;
 import com.example.extendablechattingbe.model.Chat;
 import com.example.extendablechattingbe.model.Room;
 import com.example.extendablechattingbe.model.User;
@@ -26,7 +26,7 @@ public class ChatService {
     private final UserRepository userRepository;
 
 
-    public void save(ChatRequest request) {
+    public void save(ChatMessage request) {
         User user = getUserOrException(request.getUsername());
 
         Room room = getRoomOrException(request.getRoomId());
@@ -36,21 +36,21 @@ public class ChatService {
     }
 
     @Transactional(readOnly = true)
-    public ChatRequest getChat(Long chatId) {
+    public ChatMessage getChat(Long chatId) {
         Chat chat = getChatOrException(chatId);
-        return ChatRequest.from(chat);
+        return ChatMessage.from(chat);
     }
 
     @Transactional(readOnly = true)
-    public Page<ChatRequest> getChats(Long roomId, Pageable pageable) {
+    public Page<ChatMessage> getChats(Long roomId, Pageable pageable) {
         Room room = getRoomOrException(roomId);
-        return chatRepository.findByRoom(room, pageable).map(ChatRequest::from);
+        return chatRepository.findByRoom(room, pageable).map(ChatMessage::from);
     }
 
-    public ChatRequest deleteChat(Long chatId) {
+    public ChatMessage deleteChat(Long chatId) {
         Chat chat = getChatOrException(chatId);
         chatRepository.delete(chat);
-        return ChatRequest.from(chat);
+        return ChatMessage.from(chat);
     }
 
 

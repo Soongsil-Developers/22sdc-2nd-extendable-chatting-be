@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class UserDto {
+
     private Long id;
     private String username;
 
@@ -16,4 +17,5 @@ public class UserDto {
                 .username(user.getUserName())
                 .build();
     }
+
 }
