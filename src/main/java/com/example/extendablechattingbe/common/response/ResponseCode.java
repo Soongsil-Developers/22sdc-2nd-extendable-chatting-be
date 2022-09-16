@@ -4,4 +4,5 @@ public interface ResponseCode {
     int getCode();
 
     String getMessage();
+
 }

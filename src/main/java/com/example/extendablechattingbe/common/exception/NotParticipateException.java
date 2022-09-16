@@ -4,4 +4,5 @@ public class NotParticipateException extends RuntimeException {
     public NotParticipateException(String message) {
         super(message);
     }
+
 }

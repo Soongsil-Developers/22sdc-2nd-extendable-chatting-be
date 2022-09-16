@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class RoomDto {
+
     private Long id;
     private String roomName;
     private String roomContent;
@@ -22,4 +23,5 @@ public class RoomDto {
                 .createdTime(room.getCreatedTime())
                 .build();
     }
+
 }

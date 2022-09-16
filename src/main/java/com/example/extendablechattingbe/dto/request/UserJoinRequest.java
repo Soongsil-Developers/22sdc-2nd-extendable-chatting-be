@@ -8,5 +8,7 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class UserJoinRequest {
+
     private String username;
+
 }

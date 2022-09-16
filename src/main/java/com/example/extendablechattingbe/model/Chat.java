@@ -39,4 +39,5 @@ public class Chat extends ChatBaseEntity {
         chat.room = room;
         return chat;
     }
+
 }

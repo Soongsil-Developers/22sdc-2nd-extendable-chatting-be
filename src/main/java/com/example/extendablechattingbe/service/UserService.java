@@ -85,6 +85,10 @@ public class UserService {
         return rooms;
     }
 
+    public int countByRoom(Long roomId) {
+        return participantRepository.countByRoom(roomId);
+    }
+
 
     private User getUserOrException(String username) {
         return userRepository.findByUserName(username).orElseThrow(() -> new UserNotFoundException("해당 유저를 찾을 수 없습니다."));
@@ -93,4 +97,5 @@ public class UserService {
     private Room getRoomOrException(Long roomId) {
         return roomRepository.findById(roomId).orElseThrow(() -> new RoomNotFoundException("해당 채팅방을 찾을 수 없습니다."));
     }
+
 }

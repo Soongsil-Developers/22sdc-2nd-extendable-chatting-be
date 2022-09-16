@@ -4,6 +4,7 @@ import com.example.extendablechattingbe.common.exception.RoomNotFoundException;
 import com.example.extendablechattingbe.dto.RoomDto;
 import com.example.extendablechattingbe.dto.request.RoomCreateRequest;
 import com.example.extendablechattingbe.model.Room;
+import com.example.extendablechattingbe.repository.ParticipantRepository;
 import com.example.extendablechattingbe.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class RoomService {
 
     private final RoomRepository roomRepository;
+
 
     @Transactional
     public RoomDto createRoom(RoomCreateRequest request) {
@@ -48,4 +50,5 @@ public class RoomService {
         return roomRepository.findById(roomId)
                 .orElseThrow(() -> new RoomNotFoundException("해당 채팅방을 찾을 수 없습니다."));
     }
+
 }

@@ -7,6 +7,7 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class RoomCreateRequest {
+
     private String name;
     private String content;
     private int limitUserCount;

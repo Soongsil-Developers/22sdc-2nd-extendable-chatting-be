@@ -14,6 +14,7 @@ import javax.persistence.*;
 })
 @Entity
 public class User extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -24,4 +25,5 @@ public class User extends BaseTimeEntity {
     public User(String userName) {
         this.userName = userName;
     }
+
 }

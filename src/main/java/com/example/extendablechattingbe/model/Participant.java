@@ -9,9 +9,6 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"user_id", "room_id"})
-})
 @Entity
 public class Participant extends BaseTimeEntity {
 
@@ -35,4 +32,5 @@ public class Participant extends BaseTimeEntity {
     public static Participant of(User user, Room room) {
         return new Participant(user, room);
     }
+
 }
