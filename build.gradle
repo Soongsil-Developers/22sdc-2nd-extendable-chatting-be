@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+version = '1.0'
 sourceCompatibility = '11'
 
 configurations {
@@ -24,6 +24,9 @@ dependencies {
 
     // websocket
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+    // kafka (message queue)
+    implementation 'org.springframework.kafka:spring-kafka'
 
     // database
     runtimeOnly 'mysql:mysql-connector-java'
