@@ -3,6 +3,7 @@ package com.example.extendablechattingbe.controller;
 import com.example.extendablechattingbe.common.code.CommonCode;
 import com.example.extendablechattingbe.common.code.RoomCode;
 import com.example.extendablechattingbe.common.response.Response;
+import com.example.extendablechattingbe.dto.ChatDto;
 import com.example.extendablechattingbe.dto.request.ChatMessage;
 import com.example.extendablechattingbe.dto.RoomDto;
 import com.example.extendablechattingbe.dto.request.RoomCreateRequest;
@@ -59,8 +60,8 @@ public class RoomController {
     }
 
     @GetMapping("{roomId}/chats")
-    public ResponseEntity<Response<Page<ChatMessage>>> getChats(@PathVariable Long roomId, @PageableDefault Pageable pageable) {
-        Page<ChatMessage> chats = chatService.getChats(roomId, pageable);
+    public ResponseEntity<Response<Page<ChatDto>>> getChats(@PathVariable Long roomId, @PageableDefault Pageable pageable) {
+        Page<ChatDto> chats = chatService.getChats(roomId, pageable);
         return ResponseEntity.ok(Response.of(CommonCode.GOOD_REQUEST, chats));
     }
 

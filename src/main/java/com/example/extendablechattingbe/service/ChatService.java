@@ -3,6 +3,7 @@ package com.example.extendablechattingbe.service;
 import com.example.extendablechattingbe.common.exception.ChatNotFoundException;
 import com.example.extendablechattingbe.common.exception.RoomNotFoundException;
 import com.example.extendablechattingbe.common.exception.UserNotFoundException;
+import com.example.extendablechattingbe.dto.ChatDto;
 import com.example.extendablechattingbe.dto.request.ChatMessage;
 import com.example.extendablechattingbe.model.Chat;
 import com.example.extendablechattingbe.model.Room;
@@ -42,9 +43,9 @@ public class ChatService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ChatMessage> getChats(Long roomId, Pageable pageable) {
+    public Page<ChatDto> getChats(Long roomId, Pageable pageable) {
         Room room = getRoomOrException(roomId);
-        return chatRepository.findByRoom(room, pageable).map(ChatMessage::from);
+        return chatRepository.findByRoom(room, pageable).map(ChatDto::from);
     }
 
     public ChatMessage deleteChat(Long chatId) {
